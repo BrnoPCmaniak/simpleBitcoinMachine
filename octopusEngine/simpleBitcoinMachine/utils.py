@@ -1,6 +1,7 @@
 """Utilities."""
-import re
 import datetime
+import re
+
 
 def first(iterable, default=None):
     """Get first occurance of an item in itereable."""
@@ -8,7 +9,8 @@ def first(iterable, default=None):
         return item
     return default
 
+
 def parse_utc(timestamp):
     """Parse utc timestamp to datetime."""
     conformed_timestamp = re.sub(r"[:]|([-](?!((\d{2}[:]\d{2})|(\d{4}))$))", '', timestamp)
-    return datetime.datetime.strptime(conformed_timestamp, "%Y%m%dT%H%M%S%fZ" )
+    return datetime.datetime.strptime(conformed_timestamp, "%Y%m%dT%H%M%S%fZ")

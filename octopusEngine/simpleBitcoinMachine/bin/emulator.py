@@ -30,19 +30,19 @@ def emulator(args=None):
     print("USD: %f $" % convert_currency(curr, "USD", amount))
     print("CZK: %f Kc" % convert_currency(curr, "CZK", amount))
     if curr == "BTC":
-        qrGet="bitcoin:" + curr_obj.address + "?amount=" + str(amount)
+        qrGet = "bitcoin:" + curr_obj.address + "?amount=" + str(amount)
     if curr == "LTC":
-        qrGet="litecoin:" + curr_obj.address + "?amount=" + str(amount)
+        qrGet = "litecoin:" + curr_obj.address + "?amount=" + str(amount)
 
     os.system('qrencode -o qrcode.png ' + qrGet)
-    img=Image.open('qrcode.png')
+    img = Image.open('qrcode.png')
     img.show(title="QR Payment")
 
     print("Waiting for payment 30s.")
     time.sleep(30)
 
     while True:
-        trans=curr_obj.get_last_transaction()
+        trans = curr_obj.get_last_transaction()
         try:
             out = curr_obj.is_transaction_valid(trans, amount)
             if out:
